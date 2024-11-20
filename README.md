@@ -15,6 +15,12 @@ CREATE TABLE mutual_fund_data (
     UNIQUE (scheme_code, date)
 );
 
+DB_HOST = 'localhost'
+DB_USER = 'root'
+DB_PASSWORD = 'password'
+DB_NAME = 'mutual_fund_db'
+TABLE_NAME = 'mutual_fund_data'
+
 BASE_URL = "https://portal.amfiindia.com/DownloadNAVHistoryReport_Po.aspx"
 
 def fetch_data(start_date, end_date):
