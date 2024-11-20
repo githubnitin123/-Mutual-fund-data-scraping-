@@ -45,7 +45,6 @@ def clean_data(df):
     df['date'] = pd.to_datetime(df['date'], format='%d-%b-%Y').dt.date  # Parse date
     return df
 
-
 def store_data(df):
     """Stores the data into the database."""
     engine = create_engine(f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}")
