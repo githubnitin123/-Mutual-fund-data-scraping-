@@ -35,7 +35,6 @@ def fetch_data(start_date, end_date):
     except requests.RequestException as e:
         print(f"Error fetching data: {e}")
         return None
-
 def clean_data(df):
     """Cleans the data by replacing nulls with 'NA' and renaming columns."""
     if df is None or df.empty:
@@ -44,8 +43,6 @@ def clean_data(df):
     df.rename(columns={"Scheme Code": "scheme_code", "Scheme Name": "scheme_name", "Net Asset Value": "nav", "Date": "date"}, inplace=True)
     df['date'] = pd.to_datetime(df['date'], format='%d-%b-%Y').dt.date  # Parse date
     return df
-
-
 def store_data(df):
     """Stores the data into the database."""
     engine = create_engine(f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}")
@@ -54,24 +51,18 @@ def store_data(df):
         print("Data stored successfully!")
     except Exception as e:
         print(f"Error storing data: {e}")
-
 def main():
     """Main script function."""
     today = datetime.now().strftime('%d-%b-%Y')
     print(f"Fetching data for {today}")
-    
-
-    raw_data = fetch_data(today, today)
+     raw_data = fetch_data(today, today)
     if raw_data is None:
         print("No data fetched.")
         return
-
-    cleaned_data = clean_data(raw_data)
+cleaned_data = clean_data(raw_data)
     if cleaned_data is None:
         print("No valid data after cleaning.")
         return
-    
     store_data(cleaned_data)
-
 if __name__ == "__main__":
     main()
