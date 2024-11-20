@@ -2,6 +2,11 @@
 Mutual funds are investment vehicles that pool money from multiple investors to purchase a diversified portfolio of securities such as stocks, bonds, and other assets. NAV (Net asset value) is the market price of a fund that is dependent on the day to day stock market activity.
 
 
+import requests
+import pandas as pd
+from sqlalchemy import create_engine
+from datetime import datetime
+
 CREATE DATABASE mutual_fund_db;
 
 USE mutual_fund_db;
